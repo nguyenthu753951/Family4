@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "menu")
-public class Menu {
+public class Menu implements  Comparable<Menu>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,5 +57,10 @@ public class Menu {
 
     public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    @Override
+    public int compareTo(Menu menu) {
+        return Integer.parseInt(String.valueOf(this.id)) - Integer.parseInt(String.valueOf(menu.id));
     }
 }
