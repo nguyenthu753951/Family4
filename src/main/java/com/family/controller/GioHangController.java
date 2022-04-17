@@ -4,8 +4,7 @@ import com.family.dto.Menu;
 import com.family.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +17,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.awt.SystemColor.menu;
 
 @Controller
 public class GioHangController extends HttpServlet {
@@ -59,5 +60,18 @@ public class GioHangController extends HttpServlet {
         modelAndView.addObject("giohang",gioHang);
         return modelAndView;
     }
-
+    @GetMapping("/xoaMon/{id}")
+    public String xoaGioHang(@PathVariable Long id){
+        List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
+        if (gioHang != null) {
+            for (GioHangItem item:gioHang) {
+                if (item.getMenu().getId() ==  id) {
+                    gioHang.remove(item);
+                    httpSession.setAttribute("gioHang", gioHang);
+                    break;
+                }
+            }
+        }
+        return "redirect:/xemGioHang";
+    }
 }

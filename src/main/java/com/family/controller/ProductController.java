@@ -20,8 +20,4 @@ public class ProductController {
         model.addAttribute("Menu",productRepository.findByid(id));
         return "product_detail_page";
     }
-
-
-
-
 }
