@@ -7,18 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.RequestDispatcher;
-import  javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.awt.SystemColor.menu;
 
 @Controller
 public class GioHangController extends HttpServlet {
@@ -67,6 +60,24 @@ public class GioHangController extends HttpServlet {
             for (GioHangItem item:gioHang) {
                 if (item.getMenu().getId() ==  id) {
                     gioHang.remove(item);
+                    httpSession.setAttribute("gioHang", gioHang);
+                    break;
+                }
+            }
+        }
+        return "redirect:/xemGioHang";
+    }
+    @GetMapping("/updateGioHang/{id}/{soLuong}")
+    public String updateGioHang(@PathVariable Long id, @PathVariable Long soLuong) {
+        Menu menu = productRepository.getMenuByid(id).get();
+        List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
+        if (gioHang == null || gioHang.size() == 0) {
+            gioHang = new ArrayList<>();
+        } else {
+            for (GioHangItem monHang : gioHang) {
+                if (menu.getId().intValue() == monHang.getMenu().getId().intValue()) {
+                    monHang.setSoLuong(Math.toIntExact(soLuong));
+                    monHang.setTongTien(monHang.getMenu().getGiaBan().multiply(BigDecimal.valueOf(monHang.getSoLuong())));
                     httpSession.setAttribute("gioHang", gioHang);
                     break;
                 }
