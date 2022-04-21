@@ -106,8 +106,8 @@ body {
     color: #FFF;
 }
 ::selection {
-    background-color: #4bbc90;
-    color: #4bbc90;
+    background-color: #022135;
+    color: #022135;
 }
 img {
     height: auto;
@@ -1026,7 +1026,7 @@ label.checkme {
     vertical-align: -1px;
 }
 .header {
-    background: #4bbc90;
+    background: #022135;
 }
 /* ----------------------------------------------
 	2.2 Navbar
