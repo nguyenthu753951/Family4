@@ -130,9 +130,11 @@
                                                     <td class="text-left product-name">
                                                         <span class="text-left price" th:text="${item.menu.tenMon}"></span>
                                                         <span class="text-left price" th:text="${item.menu.giaBan}"></span>
-                                                        <input class="cart-qty" name="product_quantity" min="1" value="12" type="number">
+                                                        <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number">
                                                     </td>
                                                     <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
+                                                    <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
+                                                    <td class="text-right" th:id="'item.soLuong-' + ${item.menu.id}">VNĐ</td>
                                                 </tr>
                                             </th:block>
                                             </tbody>
@@ -141,10 +143,7 @@
                                     <li>
                                         <table class="table">
                                             <tbody>
-                                                <tr>
-                                                    <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
-                                                    <td class="text-right" >210.000</td>
-                                                </tr>
+
                                                 <!--<tr>
                                                     <td class="text-right"><strong>Giảm Giá (15.000VNĐ)</strong></td>
                                                     <td class="text-right">15.000VNĐ</td>
@@ -155,8 +154,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-right"><strong>Tổng Thanh Toán</strong></td>
-                                                    <td class="text-right">VNĐ</td>-->
-                                                </tr>
+                                                    <td class="text-right">VNĐ</td>
+                                                </tr>-->
                                             </tbody>
                                         </table>
                                     </li>
@@ -204,8 +203,8 @@
         <!-- =====  BANNER STRAT  ===== -->
         <div class="container banner mt_20">
             <div class="main-banner owl-carousel">
-                <div class="item"><a href="index.html"><img src="images/thang5.png" alt="Main Banner" class="thang5.png" /></a></div>
-                <div class="item"><a href="index.html"><img src="images/thang4.png" alt="Main Banner" class="thang4.png" /></a></div>
+                <div class="item"><a href="index.html"><img src="images/thang5.png" alt="Main Banner" style="display: block; margin-left: auto; margin-right: auto;" class="thang5.png" /></a></div>
+                <div class="item"><a href="index.html"><img src="images/thang4.png" alt="Main Banner" style="display: block; margin-left: auto; margin-right: auto;" class="thang4.png" /></a></div>
             </div>
         </div>
         <!-- =====  BANNER END  ===== -->
@@ -221,9 +220,7 @@
                                 <div id="subbanner" class="sub-hover">
                                     <div class="sub-img"><a th:href="@{/product/{id}(id=${menu.id})}"><img th:src="${menu.hinhAnh}" alt="Sub Banner" class="img-responsive"></a></div>
                                     <div class="bannertext text-center">
-                                        <button class="btn mb_10 cms_btn">Xem Món Ăn</button>
-                                        <a th:href="@{/product/{id}(id=${menu.id})}">
-                                        </a>
+                                        <button class="btn mb_10 cms_btn"><a th:href="@{/product/{id}(id=${menu.id})}"></a>Xem Món Ăn</button>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +259,7 @@
                                                                 <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
                                                                 <div class="quickview"><a href="#"><span>Quick View</span></a></div>
                                                                 <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                                <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
+                                                                <div class="add-to-cart"><a th:href="xemGioHang"><span>Add to cart</span></a></div>
                                                             </div>
                                                         </div>
                                                         <div class="caption product-detail text-center">

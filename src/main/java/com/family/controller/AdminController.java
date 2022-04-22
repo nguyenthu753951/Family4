@@ -10,7 +10,7 @@ import java.util.List;
 public class AdminController {
     @GetMapping("/admin")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("Admin");
+        ModelAndView modelAndView = new ModelAndView("indexAdmin");
         return modelAndView;
     }
 }

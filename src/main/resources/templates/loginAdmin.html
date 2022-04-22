@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" th:href="@{admin/img/favicon.html}">
+    <title> Admin Family 4 </title>
+    <link th:href="@{admin/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{admin/css/bootstrap-reset.css}" rel="stylesheet">
+    <link th:href="@{admin/assets/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{admin/css/style.css}" rel="stylesheet">
+    <link th:href="@{admin/css/style-responsive.css}" rel="stylesheet" />
+    <script src="admin/js/html5shiv.js"></script>
+    <script src="admin/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+  <body class="login-body">
+
+    <div class="container">
+
+      <form class="form-signin" action="/login" method="post" enctype="application/json">
+        <h2 class="form-signin-heading">sign in now</h2>
+
+          <th:block th:if="${ErrorMessage}">
+              <h5 class="text-danger" style="text-align: center"  th:text="${ErrorMessage}" ></h5>
+          </th:block>
+
+        <div class="login-wrap">
+                <input type="email" name="email" class="form-control" placeholder="User ID" autofocus>
+                <input type="password"  name="password" class="form-control" placeholder="Password">
+                <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+        </div>
+      </form>
+
+    </div>
+    <script src="admin/js/jquery.js"></script>
+    <script src="admin/js/bootstrap.min.js"></script>
+  </body>
+</html>

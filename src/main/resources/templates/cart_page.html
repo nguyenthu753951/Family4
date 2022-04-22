@@ -106,9 +106,11 @@
                           <td class="text-left product-name">
                             <span class="text-left price" th:text="${item.menu.tenMon}"></span>
                             <span class="text-left price" th:text="${item.menu.giaBan}"></span>
-                            <input class="cart-qty" name="product_quantity" min="1" value="12" type="number">
+                            <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number">
                           </td>
                           <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
+                          <td class="text-right"><strong>Tổng Thanh Toán</strong></td>
+                          <td class="text-right">VNĐ</td>
                         </tr>
                       </th:block>
                       </tbody>
@@ -116,7 +118,7 @@
                   </li>
                   <li>
                     <table class="table">
-                        <tbody>
+                        <!--<tbody>
                             <tr>
                                 <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
                                 <td class="text-right">210.000</td>
@@ -133,7 +135,7 @@
                                 <td class="text-right"><strong>Tổng Thanh Toán</strong></td>
                                 <td class="text-right">VNĐ</td>
                             </tr>
-                        </tbody>
+                        </tbody>-->
                     </table>
                   </li>
                   <li>
@@ -214,7 +216,7 @@
               </table>
             </div>
           </form>
-          <h3 class="mtb_10">Bạn thích làm gi tiếp theo?</h3>
+          <!--<h3 class="mtb_10">Bạn thích làm gi tiếp theo?</h3>
           <p>Chọn xem bạn có mã giảm giá hoặc điểm thưởng muốn sử dụng hoặc muốn ước tính chi phí giao hàng của mình. </p>
           <div class="panel-group mt_20" id="accordion">
             <div class="panel panel-default pull-left">
@@ -232,7 +234,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-default pull-left">
+            <div class="panel panel-default pull-left">-->
               <!--<div class="panel-heading">
                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Use Gift Voucher <i class="fa fa-caret-down"></i></a> </h4>
               </div>-->
@@ -247,7 +249,7 @@
                 </div>
               </div>-->
             </div>
-            <div class="panel panel-default pull-left">
+            <!--<div class="panel panel-default pull-left">
               <div class="panel-heading">
                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Ước tính phí vận chuyển và thuế  <i class="fa fa-caret-down"></i></a> </h4>
               </div>
@@ -259,7 +261,7 @@
                       <label for="input-country" class="col-sm-2 control-label">Country</label>
                       <div class="col-sm-10">
                         <select class="form-control" id="input-country" name="country_id">
-                          <option value=""> --- Please Select --- </option>
+                          <option value=""> -&#45;&#45; Please Select -&#45;&#45; </option>
                           <option value="244">Aaland Islands</option>
                           <option value="1">Afghanistan</option>
                           <option value="2">Albania</option>
@@ -520,7 +522,7 @@
                       <label for="input-zone" class="col-sm-2 control-label">Region / State</label>
                       <div class="col-sm-10">
                         <select class="form-control" id="input-zone" name="zone_id">
-                          <option value=""> --- Please Select --- </option>
+                          <option value=""> -&#45;&#45; Please Select -&#45;&#45; </option>
                           <option value="3513">Aberdeen</option>
                           <option value="3514">Aberdeenshire</option>
                           <option value="3515">Anglesey</option>
@@ -641,9 +643,9 @@
                   </form>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-sm-4 col-sm-offset-8">
               <table class="table table-bordered">
                 <tbody>
@@ -666,14 +668,15 @@
                 </tbody>
               </table>
             </div>
-          </div>
-          <form action="index.html">
-            <input class="btn pull-left mt_30" type="submit" value="Tiếp tục mua sắm " />
+          </div>-->
+        <li>
+          <form action="/home/index,/index">
+            <input class="btn pull-left mt_30" type="submit" value="Tiếp tục mua sắm" />
           </form>
           <form action="checkout.html">
-            <input class="btn pull-right mt_30" type="submit" value="Thủ tục thanh toán 
-" />
+            <input class="btn pull-right mt_30" type="submit" value="Thủ tục thanh toán" />
           </form>
+        </li>
         </div>
       </div>
       <div id="brand_carouse" class="ptb_30 text-center">
