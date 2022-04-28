@@ -25,9 +25,9 @@ public class LoginAdminController {
     }
 
     @GetMapping("/login")
-    public ModelAndView loginIndex() {
-        ModelAndView loginAdminView = new ModelAndView("loginAdmin");
-        return loginAdminView;
+        public ModelAndView loginIndex() {
+            ModelAndView loginAdminView = new ModelAndView("loginAdmin");
+            return loginAdminView;
 
     }
 }

@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <ul class="header-top-right text-right">
-                                <li class="account"><a href="login.html">Tài Khoản</a></li>
+                                <li class="account"><a th:href="@{/user/login}" href="#">Tài Khoản</a></li>
                                 <li class="language dropdown">
                                     <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Ngôn Ngữ <span class="caret"></span> </span>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -996,7 +996,7 @@
                             <form onsubmit="return validatemail();" method="post">
                                 <div class="form-group required">
                                     <input name="email" id="email" placeholder="Nhập Email Của Bạn" class="form-control input-lg" required="" type="email">
-                                    <button type="submit" class="btn btn-default btn-lg">Đăng Ký</button>
+                                    <button type="submit" class="btn btn-default btn-lg">Đăng Ký </button>
                                 </div>
                             </form>
                         </div>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>Chào mừng bạn đên trang đăng nhập</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    .p15__button0{
+        padding: 15px 15px 0;
+    }
+    .p15{
+        padding: 15px;
+    }
+
+    body{
+        background: url("/images/bg.jpg");
+        background-size: cover;
+        background-position-y: -50;
+        padding: 0;
+        margin: 0;
+    }
+    #wrapper{
+        width: 1200px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .imgsignin{
+        position: absolute;
+        top: -15px;
+        left: 0;
+    }
+    #form-login{
+        position: relative;
+        max-width: 400px;
+        background: #fff;
+        flex-grow: 1;
+        padding: 30px 30px 40px;
+        text-align: center;
+        border-radius: 20px;
+        border-style: none;
+        box-shadow: 0px, 0px, 20px, 5px rgba(113, 53, 53, 0.8);
+    }
+    #form-signin{
+        position: relative;
+        max-width: 800px;
+        background: #fff;
+        flex-grow: 1;
+        padding: 30px 30px 40px;
+        text-align: center;
+        border-radius: 20px;
+        border-style: none;
+        box-shadow: 0px, 0px, 20px, 5px rgba(0 0 0 0.8);
+    }
+    .form-heading{
+        font-size: 25px;
+        color: #000;
+        margin-bottom: 30px;
+    }
+    #form-group{
+        border-bottom: 1px solid #fff;
+        margin-top: 15px;
+        margin-bottom: 20px;
+        display: flex;
+    }
+    .form-input{
+        /* background: transparent; */
+        border: 0;
+        outline: 1;
+        width: 100%;
+        flex-grow: 1;
+    }
+    .form-input::placeholder{
+        color: rgb(95, 94, 94);
+    }
+    .form-submit{
+        background: transparent;
+        border: 1px solid #f5f5f5;
+        color: #fff;
+        width: 100%;
+        text-transform: uppercase;
+        padding: 6px 10px;
+    }
+    .form-submit:hover{
+        border: 1px solid #54a0ff;
+    }
+    .loginclick{
+        padding: 10px;
+        background-color: #88bdff;
+        margin: 15px 0;
+        color:#fff;
+        font-size: 15px;
+        font-weight: bold;
+        border: none;
+    }
+    .signinclick{
+        padding: 10px;
+        background-color: #fa1c1c;
+        margin: 15px 0;
+        color:#fff;
+        font-size: 15px;
+        font-weight: bold;
+        border: none;
+    }
+</style>
+<body>
+<div id="wrapper">
+    <div class="logoImg" style="width: 50%;">
+        <img src="/images/family4.jpg" alt="">
+    </div>
+    <form action="" id="form-login">
+        <h1 class="form-heading">ĐĂNG NHẬP</h1>
+        <div class="form-group p15__button0">
+            <input type="text" class="form-input p15" placeholder="Tên đăng nhập" >
+        </div>
+        <div class="form-group p15__button0">
+            <input type="password" class="form-input p15" placeholder="Mật khẩu, phải trên 8  ký tự!">
+        </div>
+        <button class="loginclick" type="submit"> Đăng nhập </button>
+        <br>
+        <span>Bạn chưa có tài khoản? Đăng ký <a th:href="@{/user/signin}" href="#">Tại đây</a></span>
+    </form>
+</div>
+
+</body>
+</html>
