@@ -119,13 +119,16 @@
     <div class="logoImg" style="width: 50%;">
         <img src="/images/family4.jpg" alt="">
     </div>
-    <form action="" id="form-login">
+    <form action="/user/login" id="form-login"   method="post" enctype="application/json">
+        <th:block th:if="${ErrorMessage}">
+            <h5 class="text-danger" style="text-align: center;color: red"  th:text="${ErrorMessage}"></h5>
+        </th:block>
         <h1 class="form-heading">ĐĂNG NHẬP</h1>
         <div class="form-group p15__button0">
-            <input type="text" class="form-input p15" placeholder="Tên đăng nhập" >
+            <input type="email" name="email"  class="form-input p15" placeholder="Email" >
         </div>
         <div class="form-group p15__button0">
-            <input type="password" class="form-input p15" placeholder="Mật khẩu, phải trên 8  ký tự!">
+            <input type="password" name="matKhau"  class="form-input p15" placeholder="Mật khẩu, phải trên 8  ký tự!">
         </div>
         <button class="loginclick" type="submit"> Đăng nhập </button>
         <br>
