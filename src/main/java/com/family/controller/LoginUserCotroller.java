@@ -2,15 +2,20 @@ package com.family.controller;
 
 import com.family.dto.KhachHang;
 import com.family.dto.LoginAdmin;
+import com.family.repository.KhachHangRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
-import sun.security.mscapi.CPublicKey;
+
 
 @Controller
 public class LoginUserCotroller {
+
+    @Autowired
+    KhachHangRepository khachHangRepository;
 
     @PostMapping("/user/login")
     public ModelAndView login(KhachHang model) {
@@ -55,15 +60,15 @@ public class LoginUserCotroller {
             }
         }else {
             signinUserView.addObject(khachHang);
-            signinUserView.hasView();
+            khachHangRepository.save(khachHang);
             signinIndex.addObject("ErrorMessage","Đăng kí thành công");
-
-
-
-        return login(khachHang);
-    }
-
+            return login(khachHang);
+        }
         return signinUserView;
+    }
+    @GetMapping("/user/register")
+    public String signin(){
+        return "signinUser";
     }
 }
     
