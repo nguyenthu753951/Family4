@@ -13,6 +13,7 @@ public class LoginAdminController {
 
     private String password = "123456789";
 
+
     @PostMapping("/login")
     public ModelAndView login(LoginAdmin model) {
         ModelAndView loginAdminView = new ModelAndView("loginAdmin");
@@ -25,9 +26,9 @@ public class LoginAdminController {
     }
 
     @GetMapping("/login")
-        public ModelAndView loginIndex() {
-            ModelAndView loginAdminView = new ModelAndView("loginAdmin");
-            return loginAdminView;
+    public ModelAndView loginIndex() {
+        ModelAndView loginAdminView = new ModelAndView("loginAdmin");
+        return loginAdminView;
 
     }
 }

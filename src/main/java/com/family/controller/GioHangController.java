@@ -3,6 +3,7 @@ import com.family.dto.GioHangItem;
 import com.family.dto.Menu;
 import com.family.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -85,4 +86,11 @@ public class GioHangController extends HttpServlet {
         }
         return "redirect:/xemGioHang";
     }
+    @GetMapping("/thanhToan")
+    public ModelAndView getThanhToan() {
+        ModelAndView checkoutPage = new ModelAndView("checkout_page");
+        return checkoutPage;
+    }
+
+
 }
