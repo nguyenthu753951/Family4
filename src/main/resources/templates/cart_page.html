@@ -44,7 +44,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="header-top-left">
-                <div class="contact"><a href="#">RIDER</a> <span class="hidden-xs hidden-sm hidden-md">(029)883-8920</span></div>
+                <div class="contact"><a href="#">Family 4</a> <span class="hidden-xs hidden-sm hidden-md">(029)883-8920</span></div>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -57,14 +57,7 @@
                     <li><a href="#">German</a></li>
                   </ul>
                 </li>
-                <!--<li class="currency dropdown"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
-                    <li><a href="#">€ Euro</a></li>
-                    <li><a href="#">£ Pound Sterling</a></li>
-                    <li><a href="#">$ US Dollar</a></li>
-                  </ul>
-                </li>-->
-              </ul>
+               </ul>
             </div>
           </div>
         </div>
@@ -106,43 +99,22 @@
                           <td class="text-left product-name">
                             <span class="text-left price" th:text="${item.menu.tenMon}"></span>
                             <span class="text-left price" th:text="${item.menu.giaBan}"></span>
-                            <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number">
+                            <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number" >
                           </td>
-                          <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          <td class="text-right"><strong>Tổng Thanh Toán</strong></td>
-                          <td class="text-right">VNĐ</td>
+                          <!--<td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>-->
+                          <td class="text-right" >Tổng Tiền: </td>
+                          <td class="text-right" th:text="${item.tongTien}">VNĐ</td>
                         </tr>
                       </th:block>
                       </tbody>
                     </table>
                   </li>
-                  <li>
-                    <table class="table">
-                        <!--<tbody>
-                            <tr>
-                                <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
-                                <td class="text-right">210.000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Giảm Giá (15.000VNĐ)</strong></td>
-                                <td class="text-right">15.000VNĐ</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Thuế (15%)</strong></td>
-                                <td class="text-right">3.000VNĐ</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Tổng Thanh Toán</strong></td>
-                                <td class="text-right">VNĐ</td>
-                            </tr>
-                        </tbody>-->
-                    </table>
-                  </li>
+
                   <li>
                       <form action="xemGioHang">
                           <input class="btn pull-left mt_9" value="Xem Giỏ" type="submit">
                       </form>
-                      <form th:action="${thanhToan}">
+                      <form action="thanhToan">
                           <input class="btn pull-right mt_10" value="Thanh Toán" type="submit">
                       </form>
                   </li>
@@ -191,10 +163,12 @@
                     <td class="text-center">Số Lượng</td>
                     <td class="text-center">Đơn Giá</td>
                     <td class="text-center">Tổng Tiền</td>
+                    <td class="text-center">Tổng Thành Tiền</td>
 
                   </tr>
                 </thead>
                 <tbody>
+
                 <th:block th:each="item : ${giohang}">
                   <tr>
                     <td class="text-center"><a th:href="@{/product/{id}(id=${item.menu.id})}"><img style="width: 100px; height:100px" th:src="${item.menu.hinhAnh}" alt="iPod Classic" title="iPod Classic"></a></td>
@@ -207,10 +181,18 @@
                          <a class="btn" th:href="@{/xoaMon/{id}(id=${item.menu.id})}">Xóa Món</a>
                       </span></div>
                     </td>
-                    <td class="text-right" th:text="${item.menu.giaBan}">></td>
-                    <td class="text-right"th:text="${item.tongTien}">></td>
+                    <td class="text-right" th:text="${item.menu.giaBan}"></td>
+                    <td class="text-right"th:text="${item.tongTien}"></td>
+                    <td class="text-right"th:text="${item.TongThanhTien}"></td>
+
                   </tr>
+
+
                 </th:block>
+                <th:block th:if="${giohang}">
+                  <span th:text="${'Tổng số món:'+giohang.size}"></span >
+                </th:block>
+
 
                 </tbody>
               </table>
