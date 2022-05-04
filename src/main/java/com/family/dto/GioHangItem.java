@@ -15,6 +15,8 @@ public class GioHangItem {
     private Menu menu;
 
     private BigDecimal tongTien;
+    private static int TongSL;
+    private  double TongThanhTien;
 
     public int getSoLuong() {
         return soLuong;
@@ -38,5 +40,21 @@ public class GioHangItem {
 
     public void setTongTien(BigDecimal tongTien) {
         this.tongTien =  tongTien;
+    }
+
+    public int getTongSL() {
+        return TongSL;
+    }
+
+    public static void setTongSL(int tongSL) {
+        TongSL = tongSL;
+    }
+
+    public double getTongThanhTien() {
+        return TongThanhTien;
+    }
+
+    public void setTongThanhTien(double tongThanhTien) {
+        TongThanhTien = tongThanhTien;
     }
 }

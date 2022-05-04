@@ -3,6 +3,7 @@ package com.family.dto;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "don_hang")
@@ -16,9 +17,15 @@ public class DonHang {
 
     private Date ngayLapHD;
 
-    private Date ngayHenGiao;
+    private long ngayHenGiao;
 
     private String loai;
+
+    private BigDecimal tongTien;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ma_mon_an")
+    private Menu menu;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "maKhachHang")
@@ -31,6 +38,14 @@ public class DonHang {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ma_giam_gia")
     private PhieuGiamGia phieuGiamGia ;
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
 
     public Long getId() {
         return id;
@@ -56,11 +71,11 @@ public class DonHang {
         this.ngayLapHD = ngayLapHD;
     }
 
-    public Date getNgayHenGiao() {
+    public long getNgayHenGiao() {
         return ngayHenGiao;
     }
 
-    public void setNgayHenGiao(Date ngayHenGiao) {
+    public void setNgayHenGiao(long ngayHenGiao) {
         this.ngayHenGiao = ngayHenGiao;
     }
 
@@ -94,5 +109,13 @@ public class DonHang {
 
     public void setPhieuGiamGia(PhieuGiamGia phieuGiamGia) {
         this.phieuGiamGia = phieuGiamGia;
+    }
+
+    public BigDecimal getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(BigDecimal tongTien) {
+        this.tongTien = tongTien;
     }
 }

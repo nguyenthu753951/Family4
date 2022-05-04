@@ -20,11 +20,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="viewport" content="width=device-width">
   <!-- =====  CSS  ===== -->
-  <link rel="stylesheet" type="text/css" th:href="css/font-awesome.min.css" />
-  <link rel="stylesheet" type="text/css" th:href="css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" th:href="css/style.css">
-  <link rel="stylesheet" type="text/css" th:href="css/magnific-popup.css">
-  <link rel="stylesheet" type="text/css" th:href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/owl.carousel.css}">
   <link rel="shortcut icon" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -47,7 +47,7 @@
             </div>
               <div class="col-xs-12 col-sm-8">
                   <ul class="header-top-right text-right">
-                      <li class="account"><a th:href="@{/user/login}" href="#">Tài Khoản</a></li>
+                      <li class="account"><a th:href="@{/user/login}" >Tài Khoản</a></li>
                       <li class="language dropdown">
                           <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Ngôn Ngữ <span class="caret"></span> </span>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -61,77 +61,78 @@
         </div>
       </div>
       <div class="header">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <div class="main-search mt_40">
-                <input id="search-input" name="search" value="" placeholder="Tìm Kiếm" class="form-control input-lg" autocomplete="off" type="text">
-                <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-              </span> </div>
-                <div class="navbar-header col-xs-6 col-sm-4"> <a class="navbar-brand" th:href="@{/}"> <img alt="Online Shop Family4" src="images/family4.jpg"> </a> </div>
-                <div class="col-xs-6 col-sm-4 shopcart">
-                    <div id="cart" class="btn-group btn-block mtb_40">
-                        <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true">
-                            <span id="shippingcart">Giỏ Hàng</span>
-                            <span id="cart-total">Số Lượng
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="main-search mt_40">
+                            <input id="search-input" name="search" value="" placeholder="Tìm Kiếm" class="form-control input-lg" autocomplete="off" type="text">
+                            <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="navbar-header col-xs-6 col-sm-4"> <a class="navbar-brand" th:href="@{/}"> <img alt="Online Shop Family4" src="images/family4.jpg"> </a> </div>
+                    <div class="col-xs-6 col-sm-4 shopcart">
+                        <div id="cart" class="btn-group btn-block mtb_40">
+                            <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true">
+                                <span id="shippingcart">Giỏ Hàng</span>
+                                <span id="cart-total">Số Lượng
                                     <th:block th:if="${giohang}">
                                         <span th:text="${giohang.size}"></span >
                                     </th:block>
                                     <th:block th:unless="${giohang}">
-                                        <span> 0</span >
+                                        <span>0</span >
                                     </th:block>
 
                                     </span>
-                        </button>
+                            </button>
+                        </div>
+                        <div id="cart-dropdown" class="cart-menu collapse">
+                            <ul>
+                                <li>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <th:block th:each="item : ${giohang}">
+                                            <tr>
+                                                <td class="text-left product-name">
+                                                    <span class="text-left price" th:text="${item.menu.tenMon}"></span>
+                                                    <span class="text-left price" th:text="${item.menu.giaBan}"></span>
+                                                    <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number">
+                                                </td>
+                                                <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
+                                                <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
+                                                <td class="text-right" th:id="'item.soLuong-' + ${item.menu.id}">VNĐ</td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <form action="xemGioHang">
+                                        <input class="btn pull-left mt_9" value="Xem Giỏ" type="submit">
+                                    </form>
+                                    <form action="thanhToan">
+                                        <input class="btn pull-right mt_10" value="Thanh Toán" type="submit">
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="cart-dropdown" class="cart-menu collapse">
-                        <ul>
-                            <li>
-                                <table class="table table-striped">
-                                    <tbody>
-                                    <th:block th:each="item : ${giohang}">
-                                        <tr>
-                                            <td class="text-left product-name">
-                                                <span class="text-left price" th:text="${item.menu.tenMon}"></span>
-                                                <span class="text-left price" th:text="${item.menu.giaBan}"></span>
-                                                <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number">
-                                            </td>
-                                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                                            <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
-                                            <td class="text-right" th:id="'item.soLuong-' + ${item.menu.id}">VNĐ</td>
-                                        </tr>
-                                    </th:block>
-                                    </tbody>
-                                </table>
-                            </li>
-                            <li>
-                                <form action="xemGioHang">
-                                    <input class="btn pull-left mt_9" value="Xem Giỏ" type="submit">
-                                </form>
-                                <form action="thanhToan">
-                                    <input class="btn pull-right mt_10" value="Thanh Toán" type="submit">
-                                </form>
-                            </li>
+                </div>
+                <nav class="navbar">
+                    <p>Menu</p>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
+                    <div class="collapse navbar-collapse js-navbar-collapse">
+                        <ul id="menu" class="nav navbar-nav">
+                            <li> <a th:href="@{/}">Trang Chủ</a></li>
+                            <li> <a th:href="@{/#monan}">Món ăn</a></li>
+                            <li> <a th:href="@{/#nuocuong}">Nước uống</a></li>
                         </ul>
                     </div>
-            </div>
-          </div>
-              <nav class="navbar">
-                  <p>Menu</p>
-                  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
-                  <div class="collapse navbar-collapse js-navbar-collapse">
-                      <ul id="menu" class="nav navbar-nav">
-                          <li> <a th:href="@{/}">Trang Chủ</a></li>
-                          <li> <a th:href="@{/#monan}">Món ăn</a></li>
-                          <li> <a th:href="@{/#nuocuong}">Nước uống</a></li>
-                      </ul>
-                  </div>
 
-              </nav>
+                </nav>
+            </div>
         </div>
-      </div>
-      </div>
     </header>
     <!-- =====  HEADER END  ===== -->
     <!-- =====  CONTAINER START  ===== -->
@@ -140,10 +141,10 @@
         <!-- =====  BANNER STRAT  ===== -->
         <div class="col-sm-12">
           <div class="breadcrumb ptb_20">
-            <h1>Giỏ Hàng</h1>
+            <h1>Thanh Toán</h1>
             <ul>
               <li> <a th:href="@{/}">Trang Chủ</a></li>
-              <li class="active">Giỏ Hàng</li>
+              <li class="active">Thanh Toán</li>
             </ul>
           </div>
         </div>
@@ -161,18 +162,13 @@
                       <p>Tuỳ Chọn Thanh Toán:</p>
                       <div class="radio">
                         <label>
-                          <input type="radio" checked="checked" value="register" name="account"> Đăng Ký Tài Khoản</label>
+                          <input type="radio" checked="checked" value="register" name="account" ><a th:href="@{/user/signin}"> Đăng Ký Tài Khoản</a></label>
                       </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" value="guest" name="account"> Thanh Toán Của Khách Hàng</label>
-                      </div>
-                      <p>Bằng cách tạo Tài Khoản, bạn có thể thanh toán nhanh hơn, cập nhật trạng thái đơn hàng và theo dõi đơn hàng bạn đã thanh toán trước đó.</p>
                       <input type="button" class="btn mt_20" data-loading-text="Loading..." id="button-account" value="Tiếp Tục">
                     </div>
                     <div class="col-sm-6">
-                      <h3>Phản Hồi Của Khách Hàng</h3>
-                      <p>Tôi Là Một Khách Hàng Cũ</p>
+                        <h3>Khách hàng quay trở lại</h3>
+                      <p>Tôi là khách hàng quay trở lại</p>
                       <div class="form-group">
                         <label for="input-email" class="control-label">E-Mail</label>
                         <input type="text" class="form-control" id="input-email" placeholder="E-Mail" value="" name="email">
@@ -369,29 +365,23 @@
                       <table class="table table-bordered table-hover">
                           <thead>
                               <tr>
-                                  <td class="text-left">Tên món ăn</td>
+                                  <td class="text-left" >Hình Ảnh</td>
+                                  <td class="text-left" >Tên món ăn</td>
                                   <td class="text-right">Số lượng</td>
                                   <td class="text-right">Giá món ăn</td>
                                   <td class="text-right">Tổng cộng</td>
                               </tr>
                           </thead>
                           <tbody>
+                          <th:block th:each="item : ${giohang}">
                               <tr>
-                                  <td class="text-left"><a href="http://localhost/opc001/index.php?route=product/product&amp;product_id=46">Bún Bò</a></td>
-                                  <<!--td class="text-left">Product 19</td>-->
-                                  <td class="text-right">1</td>
-                                  <td class="text-right">25.000VNĐ</td>
-                                  <td class="text-right">25.000VNĐ</td>
+                                  <td class="text-center"><a th:href="@{/product/{id}(id=${item.menu.id})}"><img style="width: 100px; height:100px" th:src="${item.menu.hinhAnh}" alt="iPod Classic" title="iPod Classic"></a></td>
+                                  <td class="text-left"><a th:text="${item.menu.tenMon}"></a></td>
+                                  <td class="text-right" size="1" th:value="${item.soLuong}" name="quantity" th:id="'item-soluong-' + ${item.menu.id}"></td>
+                                  <td class="text-right" th:text="${item.menu.giaBan}"></td>
+                                  <td class="text-right" th:text="${item.tongTien}"></td>
                               </tr>
-                          </tbody>
-                          <tbody>
-                              <tr>
-                                  <td class="text-left"><a href="http://localhost/opc001/index.php?route=product/product&amp;product_id=46">Cơm Tấm</a></td>
-                                  <<!--td class="text-left">Product 19</td>-->
-                                  <td class="text-right">1</td>
-                                  <td class="text-right">30.000VNĐ</td>
-                                  <td class="text-right">30.000VNĐ</td>
-                              </tr>
+                          </th:block>
                           </tbody>
                           <tfoot>
                               <tr>

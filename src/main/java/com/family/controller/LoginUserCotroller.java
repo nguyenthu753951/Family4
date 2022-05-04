@@ -24,9 +24,6 @@ public class LoginUserCotroller {
     KhachHangRepository khachHangRepository;
 
     @Autowired
-    MenuRepository menuRepository;
-
-    @Autowired
     HttpSession httpSession;
 
     @PostMapping("/user/login")

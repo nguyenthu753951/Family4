@@ -99,38 +99,18 @@
                                                     <input class="cart-qty" name="product_quantity" min="1" th:value="${item.soLuong}" type="number">
                                                 </td>
                                                 <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                                                <td class="text-right"><strong>Tổng Thanh Toán</strong></td>
-                                                <td class="text-right">VNĐ</td>
+                                                <td class="text-right"><strong>Tổng Tiền: </strong></td>
+                                                <td class="text-right" th:text="${item.tongTien}" >VNĐ</td>
                                             </tr>
                                         </th:block>
                                     </table>
                                 </li>
-                                <li>
-                                    <table class="table">
-                                        <tbody>
-                                        <!--<tr>
-                                            <td class="text-right"><strong>Tổng Tiền Hàng</strong></td>
-                                            <td class="text-right" >0000</td>
-                                        </tr>
-                                     &lt;!&ndash;   <tr>
-                                            <td class="text-right"><strong>Giảm Giá (15.000VNĐ)</strong></td>
-                                            <td class="text-right">15.000VNĐ</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>Thuế (15%)</strong></td>
-                                            <td class="text-right">3.000VNĐ</td>
-                                        </tr>
-                                        <tr>&ndash;&gt;-->
 
-                                        <!--</tr>-->
-                                        </tbody>
-                                    </table>
-                                </li>
                                 <li>
-                                    <form th:action="${xemGioHang}">
+                                    <form th:action="@{xemGioHang}">
                                         <input class="btn pull-left mt_9" value="Xem Giỏ" type="submit">
                                     </form>
-                                    <form th:action="${thanhToan}">
+                                    <form th:action="@{thanhToan}">
                                         <input class="btn pull-right mt_10" value="Thanh Toán" type="submit">
                                     </form>
                                 </li>
