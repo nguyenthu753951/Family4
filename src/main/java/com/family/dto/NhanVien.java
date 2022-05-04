@@ -20,6 +20,17 @@ public class NhanVien {
 
     private Date ngaySinh;
 
+    private String EmailNV;
+
+
+    public String getEmailNV() {
+        return EmailNV;
+    }
+
+    public void setEmailNV(String emailNV) {
+        this.EmailNV = EmailNV;
+    }
+
     public Long getId() {
         return id;
     }
@@ -67,4 +78,5 @@ public class NhanVien {
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
+
 }
