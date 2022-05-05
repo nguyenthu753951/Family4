@@ -1,5 +1,6 @@
 package com.family.controller;
 
+import com.family.DTOpro.ProductsDTO;
 import com.family.dto.Menu;
 import com.family.dto.NhanVien;
 import com.family.service.StaffService;
@@ -79,7 +80,7 @@ public class AdminController {
             nhanVien.setNgaySinh(staff.getNgaySinh());
             nhanVien.setSoDienThoai(staff.getSoDienThoai());
             model.addAttribute("staffDTO", nhanVien);
-            return "staffAdd";
+            return "StaffAdd";
         }else {
             return "404";
         }
@@ -88,24 +89,24 @@ public class AdminController {
     @GetMapping("/admin/products")
     public String getPro(Model model){
         model.addAttribute("products", productService.getAllProduct());
-        return "products";
+        return "Product";
     }//view all products
 
     @GetMapping("/admin/products/add")
     public String getProAdd(Model model){
-        model.addAttribute("products", new Menu());
-        return "productsAdd";
+        model.addAttribute("productsDTO", new ProductsDTO());
+        return "ProductAdd";
     }// form add new product
     @PostMapping("/admin/products/add")
-    public String postProAdd(@ModelAttribute("products") Menu menu,
+    public String postProAdd(@ModelAttribute("productsDTO") ProductsDTO productsDTO,
                              @RequestParam("MenuImage") MultipartFile fileProductImage,
                              @RequestParam("imgName") String imgName) throws IOException {
         //convert dto > entity
         Menu meNu = new Menu();
-        meNu.setId(menu.getId());
-        meNu.setTenMon(menu.getTenMon());
-        meNu.setGiaBan(menu.getGiaBan());
-        meNu.setLoai(menu.getLoai());
+        meNu.setId(productsDTO.getId());
+        meNu.setTenMon(productsDTO.getTenMon());
+        meNu.setGiaBan(productsDTO.getGiaBan());
+        meNu.setLoai(productsDTO.getLoai());
         String imageUUID;
         if(!fileProductImage.isEmpty()){
             imageUUID = fileProductImage.getOriginalFilename();
@@ -114,8 +115,7 @@ public class AdminController {
         }else {
             imageUUID = imgName;
         }//save image
-        menu.setHinhAnh(imageUUID);
-
+        meNu.setHinhAnh(imageUUID);
         productService.updateProduct(meNu);
         return "redirect:/admin/products";
     }//form add new product > do add
@@ -137,9 +137,9 @@ public class AdminController {
             productDTO.setGiaBan(menu.getGiaBan());
             productDTO.setHinhAnh(menu.getHinhAnh());
             productDTO.setLoai(menu.getLoai());
-
-            model.addAttribute("productDTO", productDTO);
-            return "productsAdd";
+            productService.updateProduct(productDTO);
+            model.addAttribute("productsDTO", productDTO);
+            return "ProductAdd";
         }else {
             return "404";
         }
