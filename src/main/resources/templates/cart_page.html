@@ -163,8 +163,6 @@
                     <td class="text-center">Số Lượng</td>
                     <td class="text-center">Đơn Giá</td>
                     <td class="text-center">Tổng Tiền</td>
-                    <td class="text-center">Tổng Thành Tiền</td>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -183,14 +181,14 @@
                     </td>
                     <td class="text-right" th:text="${item.menu.giaBan}"></td>
                     <td class="text-right"th:text="${item.tongTien}"></td>
-                    <td class="text-right"th:text="${item.TongThanhTien}"></td>
-
                   </tr>
 
 
                 </th:block>
                 <th:block th:if="${giohang}">
                   <span th:text="${'Tổng số món:'+giohang.size}"></span >
+                  <br>
+                  <span class="footer-heading" th:text="${'Tổng tiền:'+total}"></span>
                 </th:block>
 
 

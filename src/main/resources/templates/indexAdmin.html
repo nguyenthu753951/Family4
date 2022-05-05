@@ -6,18 +6,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Family 4</title>
-    <link type="text/css" th:href="@{admin/css/bootstrap.min.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/bootstrap-reset.css}" rel="stylesheet">
+    <title>Admin Family4</title>
+    <link type="text/css" th:href="@{/admin/css/bootstrap.min.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap-reset.css}" rel="stylesheet">
     <link  rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.css}">
-    <link type="text/css" th:href="@{admin/css/slidebars.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style-responsive.css}" rel="stylesheet" />
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <link type="text/css" th:href="@{/admin/css/slidebars.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style-responsive.css}" rel="stylesheet" />
+    <script src="/admin/js/html5shiv.js"></script>
+    <script src="/admin/js/respond.min.js"></script>
 </head>
 
 <body>
@@ -73,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a  href="login.html">
+                    <a  th:href="@{/admin/products}">
                         <i class="fa fa-user"></i>
                         <span>Quản lý sản phẩm</span>
                     </a>

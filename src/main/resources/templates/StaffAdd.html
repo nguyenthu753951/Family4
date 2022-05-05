@@ -3,18 +3,16 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Family 4</title>
-    <link type="text/css" th:href="@{admin/css/bootstrap.min.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/bootstrap-reset.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap.min.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap-reset.css}" rel="stylesheet">
     <link  rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.css}">
-    <link type="text/css" th:href="@{admin/css/slidebars.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style-responsive.css}" rel="stylesheet" />
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <link type="text/css" th:href="@{/admin/css/slidebars.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style-responsive.css}" rel="stylesheet" />
+    <script src="/admin/js/html5shiv.js"></script>
+    <script src="/admin/js/respond.min.js"></script>
 </head>
 <body>
 cmm
@@ -123,24 +121,24 @@ cmm
             </div>
             <!--state overview end-->
             <div class="container">
-                <h3>Thêm Account</h3>
+                <h3 style="color: #fff">Thêm Account</h3>
                 <form action="#" th:action="@{/admin/staffs/add}" method="post" th:object="${staffDTO}"  enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-sm-10">
 
                             <input type="hidden" name="id" th:field="*{id}">
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email" style="color: #fff">Email</label>
                                 <input type="text" class="form-control" required th:field="*{EmailNV}" name="email" id="email"
                                        placeholder="Enter Email">
                             </div>
                             <div class="form-group">
-                                <label for="taikhoan">Tên nhân viên</label>
+                                <label for="taikhoan" style="color: #fff">Tên nhân viên</label>
                                 <input type="text" class="form-control" required th:field="*{hoTenNV}" name="taikhoan" id="taikhoan"
                                        placeholder="Nhập Tên nhân viên">
                             </div>
                             <div class="form-group">
-                                <label for="chucvu">Chức vụ</label>
+                                <label for="chucvu" style="color: #fff">Chức vụ</label>
                                 <input type="text" class="form-control" required th:field="*{chucVu}" name="chucvu" id="chucvu"
                                        placeholder="Nhập Chức vụ">
                             </div>
@@ -166,46 +164,25 @@ cmm
     <!--footer end-->
 </section>
 
-<script src="admin/js/jQuery_v3.1.1.min.js"></script>
-<script src="admin/js/owl.carousel.min.js"></script>
-<script src="admin/js/bootstrap.min.js"></script>
-<script src="admin/js/jquery.magnific-popup.js"></script>
-<script src="admin/js/custom.js"></script>
-<script src="admin/js/respond.min.js" ></script>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="/admin/js/jQuery_v3.1.1.min.js"></script>
+<script src="/admin/js/owl.carousel.min.js"></script>
+<script src="/admin/js/bootstrap.min.js"></script>
+<script src="/admin/js/jquery.magnific-popup.js"></script>
+<script src="/admin/js/custom.js"></script>
+<script src="/admin/js/respond.min.js" ></script>
 
 <!--right slidebar-->
-<script src="admin/js/slidebars.min.js"></script>
+<script src="/admin/js/slidebars.min.js"></script>
 
 <!--common script for all pages-->
-<script src="admin/js/common-scripts.js"></script>
+<script src="/admin/js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script src="admin/js/sparkline-chart.js"></script>
-<script src="admin/js/easy-pie-chart.js"></script>
-<script src="admin/js/count.js"></script>
-<script>
+<script src="/admin/js/sparkline-chart.js"></script>
+<script src="/admin/js/easy-pie-chart.js"></script>
+<script src="/admin/js/count.js"></script>
 
-
-    //owl carousel
-
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
-
-        });
-    });
-
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
-    });
-
-</script>
 
 </body>
 </html>

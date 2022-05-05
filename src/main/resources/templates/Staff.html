@@ -5,19 +5,17 @@
 <!--<![endif]-->
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>Admin Family 4</title>
-    <link type="text/css" th:href="@{admin/css/bootstrap.min.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/bootstrap-reset.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap.min.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap-reset.css}" rel="stylesheet">
     <link  rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.css}">
-    <link type="text/css" th:href="@{admin/css/slidebars.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style-responsive.css}" rel="stylesheet" />
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <link type="text/css" th:href="@{/admin/css/slidebars.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style-responsive.css}" rel="stylesheet" />
+    <script src="/admin/js/html5shiv.js"></script>
+    <script src="/admin/js/respond.min.js"></script>
 </head>
 
 <body>
@@ -38,11 +36,11 @@
                 </li>
                 <!-- user login dropdown start-->
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="/img/family4.jpg">
-                        <span class="username">ADMIN</span>
-                        <b class="caret"></b>
-                    </a>
+<!--                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">-->
+<!--                        <img alt="" src="admin/img/family4.jpg">-->
+<!--                        <span class="username">ADMIN</span>-->
+<!--                        <b class="caret"></b>-->
+<!--                    </a>-->
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
@@ -130,26 +128,25 @@
                 <table class="table">
                     <thead class="thead-light text-center">
                     <tr>
-                        <th class="text-center" scope="col">STT</th>
-                        <th class="text-center" scope="col">Họ và tên</th>
-                        <th class="text-center" scope="col">Email</th>
-                        <th class="text-center" scope="col">Chức vụ</th>
-                        <th class="text-center" scope="col">Delete</th>
-                        <th class="text-center" scope="col">Update</th>
+                        <th class="text-center" style="color: #fff" scope="col">STT</th>
+                        <th class="text-center" style="color: #fff" scope="col">Họ và tên</th>
+                        <th class="text-center" style="color: #fff" scope="col">Email</th>
+                        <th class="text-center" style="color: #fff" scope="col">Chức vụ</th>
+                        <th class="text-center" style="color: #fff" scope="col">Delete</th>
+                        <th class="text-center" style="color: #fff" scope="col">Update</th>
                     </tr>
                     </thead>
                     <tbody>
+
                     <tr th:each="user, iStat : ${Staffs}">
                         <th class="text-center" scope="row" th:text="${iStat.index + 1}">1</th>
                         <td class="text-center" th:text="${user.hoTenNV}"></td>
                         <td class="text-center" th:text="${user.emailNV}"></td>
                         <td class="text-center" th:text="${user.chucVu}"></td>
-                        <td class="text-center"><a href="" th:href="@{/admin/staffs/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a></td>
-                        <td class="text-center"><a href="" th:href="@{/admin/staffs/update/{id}(id=${user.id})}" class="btn btn-warning">Update</a></td>
+                        <td class="text-center"><a  th:href="@{/admin/staffs/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a></td>
+                        <td class="text-center"><a  th:href="@{/admin/staffs/update/{id}(id=${user.id})}" class="btn btn-warning">Update</a></td>
 
                     </tr>
-
-
                     </tbody>
                 </table>
             </div>
@@ -167,48 +164,23 @@
     <!--footer end-->
 </section>
 
-<script src="admin/js/jQuery_v3.1.1.min.js"></script>
-<script src="admin/js/owl.carousel.min.js"></script>
-<script src="admin/js/bootstrap.min.js"></script>
-<script src="admin/js/jquery.magnific-popup.js"></script>
-<script src="admin/js/custom.js"></script>
-<script src="admin/js/respond.min.js" ></script>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="/admin/js/jQuery_v3.1.1.min.js"></script>
+<script src="/admin/js/owl.carousel.min.js"></script>
+<script src="/admin/js/bootstrap.min.js"></script>
+<script src="/admin/js/jquery.magnific-popup.js"></script>
+<script src="/admin/js/custom.js"></script>
+<script src="/admin/js/respond.min.js" ></script>
 
 <!--right slidebar-->
-<script src="admin/js/slidebars.min.js"></script>
+<script src="/admin/js/slidebars.min.js"></script>
 
 <!--common script for all pages-->
-<script src="admin/js/common-scripts.js"></script>
+<script src="/admin/js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script src="admin/js/sparkline-chart.js"></script>
-<script src="admin/js/easy-pie-chart.js"></script>
-<script src="admin/js/count.js"></script>
-<script>
-
-
-    //owl carousel
-
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
-
-        });
-    });
-
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
-    });
-
-</script>
-
+<script src="/admin/js/sparkline-chart.js"></script>
+<script src="/admin/js/easy-pie-chart.js"></script>
+<script src="/admin/js/count.js"></script>
 </body>
-
-<!-- Mirrored from thevectorlab.net/flatlab/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 Aug 2015 03:43:32 GMT -->
 </html>

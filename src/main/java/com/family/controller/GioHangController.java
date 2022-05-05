@@ -36,7 +36,7 @@ public class GioHangController extends HttpServlet {
         Menu menu = productRepository.getMenuByid(id).get();
         int sl=1;
         double total = 0;
-        List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
+      List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
         if (gioHang == null || gioHang.size() == 0) {
             gioHang = new ArrayList<>();
             gioHang.add(new GioHangItem(Math.toIntExact(soLuong), menu, menu.getGiaBan().multiply(BigDecimal.valueOf(soLuong))));
@@ -46,23 +46,26 @@ public class GioHangController extends HttpServlet {
                     item.setSoLuong((int) (item.getSoLuong() + soLuong));
                     item.setTongTien(item.getMenu().getGiaBan().multiply(BigDecimal.valueOf(item.getSoLuong())));
                     httpSession.setAttribute("gioHang", gioHang);
-
-                    return "redirect:/xemGioHang";
                 }
             }
 
             gioHang.add(new GioHangItem(Math.toIntExact(soLuong), menu, menu.getGiaBan().multiply(BigDecimal.valueOf(soLuong))));
         }
+
         httpSession.setAttribute("gioHang", gioHang);
         return "redirect:/xemGioHang";
     }
-
+    public BigDecimal gteAmount() {
+        List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
+        return gioHang.stream().map(i->i.getTongTien()).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
     @GetMapping("/xemGioHang")
     public ModelAndView getGiohang() {
         ModelAndView modelAndView = new ModelAndView("cart_page");
         List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
         modelAndView.addObject("giohang",gioHang);
+        modelAndView.addObject("total",gteAmount());
         return modelAndView;
     }
     @GetMapping("/xoaMon/{id}")

@@ -85,19 +85,19 @@ public class AdminController {
         }
 
     }
-    @GetMapping("/admin/Menu")
+    @GetMapping("/admin/products")
     public String getPro(Model model){
-        model.addAttribute("Menu", productService.getAllProduct());
-        return "menu";
+        model.addAttribute("products", productService.getAllProduct());
+        return "products";
     }//view all products
 
     @GetMapping("/admin/products/add")
     public String getProAdd(Model model){
-        model.addAttribute("Menu", new Menu());
+        model.addAttribute("products", new Menu());
         return "productsAdd";
     }// form add new product
     @PostMapping("/admin/products/add")
-    public String postProAdd(@ModelAttribute("Menu") Menu menu,
+    public String postProAdd(@ModelAttribute("products") Menu menu,
                              @RequestParam("MenuImage") MultipartFile fileProductImage,
                              @RequestParam("imgName") String imgName) throws IOException {
         //convert dto > entity

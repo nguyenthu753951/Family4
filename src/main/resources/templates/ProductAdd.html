@@ -3,18 +3,16 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Family 4</title>
-    <link type="text/css" th:href="@{admin/css/bootstrap.min.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/bootstrap-reset.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap.min.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/bootstrap-reset.css}" rel="stylesheet">
     <link  rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.css}">
-    <link type="text/css" th:href="@{admin/css/slidebars.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style.css}" rel="stylesheet">
-    <link type="text/css" th:href="@{admin/css/style-responsive.css}" rel="stylesheet" />
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <link type="text/css" th:href="@{/admin/css/slidebars.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style.css}" rel="stylesheet">
+    <link type="text/css" th:href="@{/admin/css/style-responsive.css}" rel="stylesheet" />
+    <script src="/admin/js/html5shiv.js"></script>
+    <script src="/admin/js/respond.min.js"></script>
 </head>
 <body>
 <section id="container" >
@@ -130,18 +128,18 @@
                             <input type="hidden" name="id" th:field="*{id}">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" required th:field="*{TEN_SAN_PHAM}" name="name" id="name"
+                                <input type="text" class="form-control" required th:field="*{tenMon}" name="name" id="name"
                                        placeholder="Enter name">
 
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input type="number" class="form-control" required th:field="*{DON_GIA}" name="price" id="price"
+                                <input type="number" class="form-control" required th:field="*{giaMon}" name="price" id="price"
                                        placeholder="Price">
                             </div>
                             <div class="form-group">
                                 <label for="description">Mô tả</label>
-                                <textarea class="form-control" rows="5" th:field="*{MO_TA}" name="description" id="description"></textarea>
+                                <textarea class="form-control" rows="5" th:field="*{loai}" name="description" id="description"></textarea>
 
                             </div>
                         </div>
@@ -154,7 +152,7 @@
                             <div class="form-group">
                                 <img src="#" id="imgPreview" height="100px" width="100px" th:src="@{/img/food.jpg}" style="margin-top: 20px" alt=" ">
                             </div>
-                            <input type="hidden" name="imgName" th:value="${productDTO.HINHANH}">
+                            <input type="hidden" name="imgName" th:value="${productDTO.hinhAnh}">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
 
@@ -174,47 +172,24 @@
     </footer>
     <!--footer end-->
 </section>
-
-<script src="admin/js/jQuery_v3.1.1.min.js"></script>
-<script src="admin/js/owl.carousel.min.js"></script>
-<script src="admin/js/bootstrap.min.js"></script>
-<script src="admin/js/jquery.magnific-popup.js"></script>
-<script src="admin/js/custom.js"></script>
-<script src="admin/js/respond.min.js" ></script>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="/admin/js/jQuery_v3.1.1.min.js"></script>
+<script src="/admin/js/owl.carousel.min.js"></script>
+<script src="/admin/js/bootstrap.min.js"></script>
+<script src="/admin/js/jquery.magnific-popup.js"></script>
+<script src="/admin/js/custom.js"></script>
+<script src="/admin/js/respond.min.js" ></script>
 
 <!--right slidebar-->
-<script src="admin/js/slidebars.min.js"></script>
+<script src="/admin/js/slidebars.min.js"></script>
 
 <!--common script for all pages-->
-<script src="admin/js/common-scripts.js"></script>
+<script src="/admin/js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script src="admin/js/sparkline-chart.js"></script>
-<script src="admin/js/easy-pie-chart.js"></script>
-<script src="admin/js/count.js"></script>
-<script>
-
-
-    //owl carousel
-
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
-
-        });
-    });
-
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
-    });
-
-</script>
+<script src="/admin/js/sparkline-chart.js"></script>
+<script src="/admin/js/easy-pie-chart.js"></script>
+<script src="/admin/js/count.js"></script>
 
 </body>
 </html>
