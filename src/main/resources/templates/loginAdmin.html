@@ -23,7 +23,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/login" method="post" enctype="application/json">
+      <form class="form-signin" th:action="${/login}" method="post">
         <h2 class="form-signin-heading">sign in now</h2>
 
           <th:block th:if="${ErrorMessage}">

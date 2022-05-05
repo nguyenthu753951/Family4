@@ -34,12 +34,12 @@ public class AdminController {
 
 
     //Staff
-    @GetMapping("/admin/Staffs")
+    @GetMapping("/admin/staffs")
     public String getAccstaff(Model model){
         model.addAttribute("Staffs", staffService.getAllStaff());
         return "Staff";
     }
-    @GetMapping("/admin/Staffs/add")
+    @GetMapping("/admin/staffs/add")
     public String getstaffAdd(Model model){
         model.addAttribute("staffDTO", new NhanVien());
         return "staffAdd";
@@ -56,12 +56,12 @@ public class AdminController {
         nhanVien.setNgaySinh(staff.getNgaySinh());
         nhanVien.setSoDienThoai(staff.getSoDienThoai());
         staffService.updatestaff(staff);
-        return "redirect:/admin/Staffs";
+        return "redirect:/admin/staffs";
     }
-    @GetMapping("/admin/Staff/delete/{id}")
+    @GetMapping("/admin/staffs/delete/{id}")
     public String deletestaff(@PathVariable Long id){
         staffService.removestaffById(id);
-        return "redirect:admin/Staffs";
+        return "redirect:/admin/staffs";
     }//delete 1 staff
 
     @GetMapping("/admin/staffs/update/{id}")
