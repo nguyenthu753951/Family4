@@ -35,6 +35,7 @@ public class LoginUserCotroller {
         ModelAndView loginView = new ModelAndView("loginUser");
         ModelAndView homeIndex =  new ModelAndView("redirect:/");
         if (khachHangList.size() > 0) {
+            httpSession.setAttribute("KhachHangDangNhap", khachHangList.get(0));
             return homeIndex;
         }
         loginView.addObject("ErrorMessage","Tên đăng nhập hoặc mật khẩu không đúng");

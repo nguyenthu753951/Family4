@@ -1,8 +1,8 @@
 package com.family.controller;
 import com.family.dto.*;
-import com.family.repository.KhachHangRepository;
+import com.family.repository.ChiTietDonHangRepository;
+import com.family.repository.DonHangRepository;
 import com.family.repository.ProductRepository;
-import com.family.repository.ThanhToanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,20 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.DoubleStream;
-import java.util.stream.LongStream;
 
 @Controller
 public class GioHangController extends HttpServlet {
 
-    @Autowired
-    KhachHangRepository khachHangRepository;
-    @Autowired
-    ThanhToanRepository thanhToanRepository;
-
+@Autowired
+    DonHangRepository donHangRepository;
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    ChiTietDonHangRepository chiTietDonHangRepository;
 
     @Autowired
     HttpSession httpSession;
@@ -53,8 +53,11 @@ public class GioHangController extends HttpServlet {
         httpSession.setAttribute("gioHang", gioHang);
         return "redirect:/xemGioHang";
     }
-    public BigDecimal gteAmount() {
+    public BigDecimal getAmount() {
         List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
+        if (gioHang ==  null) {
+            return new BigDecimal(0);
+        }
         return gioHang.stream().map(i->i.getTongTien()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -63,7 +66,7 @@ public class GioHangController extends HttpServlet {
         ModelAndView modelAndView = new ModelAndView("cart_page");
         List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
         modelAndView.addObject("giohang",gioHang);
-        modelAndView.addObject("total",gteAmount());
+        modelAndView.addObject("total",getAmount());
         return modelAndView;
     }
     @GetMapping("/xoaMon/{id}")
@@ -98,67 +101,49 @@ public class GioHangController extends HttpServlet {
         }
         return "redirect:/xemGioHang";
     }
-    /*@RequestMapping(value = "checkout_page.html", method = RequestMethod.POST)
-    public String thanhToan(@ModelAttribute("DonHang") DonHang donHang) {
-        List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("GioHangItem");
-        if (gioHang == null) {
-            gioHang = new ArrayList<>();
-        }
-        donHang.setNgayHenGiao(new Date().getTime());
-        ThanhToanItem.setThanhToanItemTinhTrang(true);
-        for (GioHangItem monHang : gioHang) {
-            ThanhToanItem thanhToanItem = new ThanhToanItem();
-            thanhToanItem.setDonHang(donHang);
-            thanhToanItem.setMenu(monHang.getMenu());
-            thanhToanItem.setThanhToanItemGia(thanhToanItem.getThanhToanItemGia());
-            thanhToanItem.setThanhToanItemSoLuong(thanhToanItem.getThanhToanItemSoLuong());
-            thanhToanItem.setThanhToanItemId(thanhToanItem.getThanhToanItemId());
-            //thanhToanItem.create(ThanhToanItem);
-        }
-        ArrayList<GioHangItem> gioHangItems = new ArrayList<>();
-        httpSession.setAttribute("thanhToan", gioHangItems);
-        return "redirect:/checkout_page.html";
-    }*/
     @GetMapping("/thanhToan")
-    public ModelAndView thanhToan(KhachHang khachHang) {
-
-        List<KhachHang> khachHangList = khachHangRepository.findByEmailAndMatKhau(khachHang.getEmail(), khachHang.getMatKhau());
-        ModelAndView thanhToan = new ModelAndView("checkout_page");
-        ModelAndView login=new ModelAndView("loginUser");
-        if(khachHangList.size() == 0){
-            return thanhToan;
-        }
-        return login;
-    }
-    /*public ModelAndView getCheckOut (KhachHang khachHang, GioHangItem gioHangItem){
+    public ModelAndView thanhToan() {
+        ModelAndView thanhToan = new ModelAndView("checkout");
         List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
-        if (gioHang == null || gioHang.size() == 0) {
-            gioHang = new ArrayList<>();
+        thanhToan.addObject("giohang",gioHang);
+        thanhToan.addObject("total",getAmount());
+        return thanhToan;
+    }
+
+    @PostMapping("/thanhToan")
+    public ModelAndView getpayment(String ngayHenGiao) throws ParseException {
+        ModelAndView thanhToan = new ModelAndView("checkout");
+        ModelAndView homeIndex =  new ModelAndView("redirect:/");
+        ModelAndView userLogin =  new ModelAndView("redirect:/user/login");
+        List<GioHangItem> gioHang = (List<GioHangItem>) httpSession.getAttribute("gioHang");
+        KhachHang khachHangDangNhap = (KhachHang) httpSession.getAttribute("KhachHangDangNhap");
+
+        if (khachHangDangNhap == null) {
+            return userLogin;
         }
-        List<KhachHang> khachHangList = khachHangRepository.findByEmailAndMatKhau(khachHang.getEmail(), khachHang.getMatKhau());
-        ModelAndView checkoutView = new ModelAndView("checkout_page");
-        if (khachHangList.size() > 0) {
-            return checkoutView;
+        DonHang donHang = storeDonHang(khachHangDangNhap, ngayHenGiao);
+        for (GioHangItem gioHangItem: gioHang ) {
+            ChiTietDonHang chiTietDonHang = new ChiTietDonHang();
+            chiTietDonHang.setDonHang(donHang);
+            chiTietDonHang.setMenu(gioHangItem.getMenu());
+            chiTietDonHang.setSoLuong(gioHangItem.getSoLuong());
+            chiTietDonHangRepository.save(chiTietDonHang);
         }
-        checkoutView.addObject("ErrorMessage","Tên đăng nhập hoặc mật khẩu không đúng");
-        return checkoutView;
+        httpSession.removeAttribute("gioHang");
+        return homeIndex;
+    }
 
-        DonHang donHang = (DonHang) httpSession.getAttribute("donHang");
-        try {
-            DonHang donHang = (DonHang) httpSession.getAttribute("donHang");
-            for (DonHang donHang1 : donHang) {
-                donHang1.getMenu().getId().intValue();
-                donHang1.getNgayHenGiao();
-                donHang1.getTongTien();
-                donHang1.getKhachHang();
-            }
-            ArrayList<GioHangItem> gioHangItems = new ArrayList<>();
-            httpSession.setAttribute("thanhToan", thanhToan());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }*/
-
+    private DonHang storeDonHang(KhachHang khachHang, String ngayHenGiao) throws ParseException {
+        DonHang donHang = new DonHang();
+        donHang.setKhachHang(khachHang);
+        Date date=new SimpleDateFormat("yyyy-MM-dd").parse(ngayHenGiao);
+        donHang.setNgayHenGiao(date);
+        donHang.setNgayLapHD(new Date());
+        donHang.setTongTien(getAmount());
+        donHangRepository.save(donHang);
+        return donHang;
+    }
 }
+
+
+

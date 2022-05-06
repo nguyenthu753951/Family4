@@ -59,8 +59,19 @@ public class Menu implements  Comparable<Menu>{
         this.hinhAnh = hinhAnh;
     }
 
+    public Menu(String tenMon, BigDecimal giaBan, String loai, String hinhAnh) {
+        this.tenMon = tenMon;
+        this.giaBan = giaBan;
+        this.loai = loai;
+        this.hinhAnh = hinhAnh;
+    }
+
+    public Menu() {
+    }
+
     @Override
     public int compareTo(Menu menu) {
         return Integer.parseInt(String.valueOf(this.id)) - Integer.parseInt(String.valueOf(menu.id));
     }
+
 }
