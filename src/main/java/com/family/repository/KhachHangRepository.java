@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface KhachHangRepository extends CrudRepository<KhachHang, Long> {
 
     List<KhachHang> findByEmailAndMatKhau(String email, String matKhau);
-    List<KhachHang> findKhachHangBy();
+    List<KhachHang> findByEmail(String email);
 
 
 

@@ -48,10 +48,8 @@ public class GioHangController extends HttpServlet {
                     httpSession.setAttribute("gioHang", gioHang);
                 }
             }
-
             gioHang.add(new GioHangItem(Math.toIntExact(soLuong), menu, menu.getGiaBan().multiply(BigDecimal.valueOf(soLuong))));
         }
-
         httpSession.setAttribute("gioHang", gioHang);
         return "redirect:/xemGioHang";
     }
@@ -93,7 +91,6 @@ public class GioHangController extends HttpServlet {
                 if (menu.getId().intValue() == monHang.getMenu().getId().intValue()) {
                     monHang.setSoLuong(Math.toIntExact(soLuong));
                     monHang.setTongTien(monHang.getMenu().getGiaBan().multiply(BigDecimal.valueOf(monHang.getSoLuong())));
-
                     httpSession.setAttribute("gioHang", gioHang);
                     break;
                 }

@@ -72,11 +72,23 @@ public class LoginUserCotroller {
             signinView.addObject("ErrorMessage","Chưa nhập mật khẩu");
             return signinView;
         }
-
-        khachHangRepository.save(khachHang);
-
+        if (khachHang != null && !isDuplicateEmail(khachHang)) {
+            khachHangRepository.save(khachHang);
+        } else {
+            signinView.addObject("ErrorMessage","Email đã được đăng kí, dùng email khác");
+            return signinView;
+        }
         return loginView;
-   }
+    }
+
+    private boolean isDuplicateEmail(KhachHang khachHang) {
+        List<KhachHang> khachHangList = khachHangRepository.findByEmail(khachHang.getEmail());
+        if (khachHangList.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
     @GetMapping("/user/signin")
     public String signin(){
         return "signinUser";
