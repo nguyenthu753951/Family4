@@ -12,6 +12,6 @@ INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (14, 'Phở 
 INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (15, 'Bún Bò', 30000, 'AnNhieu', 'images/bunbo.jpg');
 INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (1, 'Lẩu Thái Hải Sản', 150000, 'AnNhieu', 'images/lauchuacay.jpg');
 INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (16, 'Đùi gà', 50000, 'AnNhieu', 'images/duiga.jpg');
-
+INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (17, 'Bún Bò', 30000, 'MonAn', 'images/bunbo.jpg');
 INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (3, 'Cơm Tấm', 30000, 'AnNhieu', 'images/comtam.jpg');
 INSERT into menu  (id, ten_mon , gia_ban , loai  , hinh_anh) VALUES (2, 'Cơm Tấm', 30000, 'MonAn', 'images/product/comtam2.jpg');
