@@ -1,6 +1,7 @@
 package com.family.controller;
 
 import com.family.DTOpro.ProductsDTO;
+import com.family.DTOpro.StaffDTO;
 import com.family.dto.Menu;
 import com.family.dto.NhanVien;
 import com.family.service.StaffService;
@@ -44,20 +45,17 @@ public class AdminController {
     }
     @GetMapping("/admin/staffs/add")
     public String getstaffAdd(Model model){
-        model.addAttribute("staffDTO", new NhanVien());
-        return "staffAdd";
+        model.addAttribute("staffDTO", new StaffDTO());
+        return "StaffAdd";
     }
     @PostMapping("/admin/staffs/add")
-    public String poststaffAdd(@ModelAttribute NhanVien nhanVien) {
+    public String poststaffAdd(@ModelAttribute StaffDTO nhanVien) {
         //convert dto > entity
         NhanVien staff = new NhanVien();
-        nhanVien.setId(staff.getId());
-        nhanVien.setHoTenNV(staff.getHoTenNV());
-        nhanVien.setChucVu(staff.getChucVu());
-        nhanVien.setEmailNV(staff.getEmailNV());
-        nhanVien.setGioiTinh(staff.getGioiTinh());
-        nhanVien.setNgaySinh(staff.getNgaySinh());
-        nhanVien.setSoDienThoai(staff.getSoDienThoai());
+        staff.setId(nhanVien.getId());
+        staff.setEmailNV(nhanVien.getEmailNV());
+        staff.setChucVu(nhanVien.getChucVu());
+        staff.setHoTenNV(nhanVien.getHoTenNV());
         staffService.updatestaff(staff);
         return "redirect:/admin/staffs";
     }
@@ -71,17 +69,14 @@ public class AdminController {
     public String updatestaff(@PathVariable Long id, Model model){
        Optional<NhanVien> opStaff = staffService.getstaffById(id);
         if (opStaff.isPresent()){
-            NhanVien staff = opStaff.get();
+            NhanVien nhanVien = opStaff.get();
             //convert entity > dto
-            NhanVien nhanVien = new NhanVien();
-            nhanVien.setId(staff.getId());
-            nhanVien.setHoTenNV(staff.getHoTenNV());
-            nhanVien.setChucVu(staff.getChucVu());
-            nhanVien.setEmailNV(staff.getEmailNV());
-            nhanVien.setGioiTinh(staff.getGioiTinh());
-            nhanVien.setNgaySinh(staff.getNgaySinh());
-            nhanVien.setSoDienThoai(staff.getSoDienThoai());
-            model.addAttribute("staffDTO", nhanVien);
+            StaffDTO staff = new StaffDTO();
+            staff.setId(nhanVien.getId());
+            staff.setHoTenNV(nhanVien.getHoTenNV());
+            staff.setChucVu(nhanVien.getChucVu());
+            staff.setEmailNV(nhanVien.getEmailNV());
+            model.addAttribute("staffDTO", staff);
             return "StaffAdd";
         }else {
             return "404";
