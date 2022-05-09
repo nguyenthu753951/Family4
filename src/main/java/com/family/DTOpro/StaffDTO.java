@@ -1,13 +1,8 @@
-package com.family.dto;
+package com.family.DTOpro;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "nhan_vien")
-public class NhanVien {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class StaffDTO {
     private Long id;
 
     private String hoTenNV;
@@ -79,16 +74,17 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public NhanVien(Long id, String hoTenNV, String gioiTinh, String soDienThoai, String chucVu, Date ngaySinh, String emailNV) {
+    public StaffDTO(Long id, String hoTenNV, String gioiTinh, String soDienThoai, String chucVu, Date ngaySinh, String emailNV) {
         this.id = id;
         this.hoTenNV = hoTenNV;
         this.gioiTinh = gioiTinh;
         this.soDienThoai = soDienThoai;
         this.chucVu = chucVu;
         this.ngaySinh = ngaySinh;
-        this.EmailNV = emailNV;
+        EmailNV = emailNV;
     }
-    public NhanVien(){
+    public StaffDTO(){
         super();
     }
+
 }
