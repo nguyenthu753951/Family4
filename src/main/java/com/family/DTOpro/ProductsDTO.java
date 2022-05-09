@@ -63,7 +63,6 @@ public class ProductsDTO {
         this.giaBan = giaBan;
         this.loai = loai;
         this.hinhAnh = hinhAnh;
-
         }
 
 }

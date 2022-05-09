@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,12 +21,9 @@ import java.util.Optional;
 
 @Controller
 public class AdminController {
-    @GetMapping("/admin")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("indexAdmin");
-        return modelAndView;
-    }
-    public static String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/img";
+    public static String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/admin/img";
+
+
     @Autowired
     ProductService productService;
     @Autowired
@@ -33,7 +31,11 @@ public class AdminController {
     private String emailAdmin = "admin@gmail.com";
     private String password = "123456789";
 
-
+    @GetMapping("/admin")
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("indexAdmin");
+        return modelAndView;
+    }
     //Staff
     @GetMapping("/admin/staffs")
     public String getAccstaff(Model model){
@@ -99,13 +101,15 @@ public class AdminController {
     }// form add new product
     @PostMapping("/admin/products/add")
     public String postProAdd(@ModelAttribute("productsDTO") ProductsDTO productsDTO,
-                             @RequestParam("MenuImage") MultipartFile fileProductImage,
+                             @RequestParam("productImage") MultipartFile fileProductImage,
                              @RequestParam("imgName") String imgName) throws IOException {
         //convert dto > entity
         Menu meNu = new Menu();
+        BigDecimal number= productsDTO.getGiaBan();
         meNu.setId(productsDTO.getId());
         meNu.setTenMon(productsDTO.getTenMon());
-        meNu.setGiaBan(productsDTO.getGiaBan());
+//        meNu.setGiaBan(productsDTO.getGiaBan());
+        meNu.setGiaBan(number);
         meNu.setLoai(productsDTO.getLoai());
         String imageUUID;
         if(!fileProductImage.isEmpty()){
