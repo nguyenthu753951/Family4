@@ -16,14 +16,13 @@
     <link th:href="@{admin/css/style-responsive.css}" rel="stylesheet" />
     <script src="admin/js/html5shiv.js"></script>
     <script src="admin/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
   <body class="login-body">
 
     <div class="container">
 
-      <form class="form-signin" th:action="${/login}" method="post">
+      <form class="form-signin" action="/login" method="post" enctype="application/json">
         <h2 class="form-signin-heading">sign in now</h2>
 
           <th:block th:if="${ErrorMessage}">
